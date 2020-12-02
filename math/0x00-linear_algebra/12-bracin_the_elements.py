@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-""" opp"""
+""" np opp"""
 
 
 def np_elementwise(mat1, mat2):
-    """ opp"""
+    """np opp"""
     add = mat1 + mat2
     diff = mat1 - mat2
     mul = mat1 * mat2
