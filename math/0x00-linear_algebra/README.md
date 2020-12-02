@@ -33,6 +33,8 @@ array([[1, 3],
 a.transpose(1, 0)
 array([[1, 3],
        [2, 4]])
+or 
+a.T       
 ```
 
 
