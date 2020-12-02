@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
+""" mat_mul"""
+
+
 def mat_mul(mat1, mat2):
+    """ mat_mul"""
     if len(mat1[0]) != len(mat2):
         return None
     mat = []
