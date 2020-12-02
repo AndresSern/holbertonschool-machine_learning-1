@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+""" shape"""
+
+
 def matrix_shape(matrix):
     mat1 = []
     while isinstance(matrix, list):
