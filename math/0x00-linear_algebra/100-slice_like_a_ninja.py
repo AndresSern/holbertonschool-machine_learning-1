@@ -13,5 +13,5 @@ def np_slice(matrix, axes={}):
             p.append(slice(*axes[a]))
         else:
             p.append(slice(None, None, None))
-    mat = matrix[p]
+    mat = matrix[tuple(p)]
     return (mat)
