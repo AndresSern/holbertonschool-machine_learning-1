@@ -14,15 +14,11 @@ def poly_derivative(poly):
         return None
     if len(poly) == 1:
         return [0]
-    for i in poly:
-        if poly.index(i) == 1:
-            p.append(poly[1])
-        if poly.index(i) > 0 and poly.index(i) != 1:
-            p.append(i*poly.index(i))
-    test = 1
-    for i in p:
-        if i != 0:
-            test = 0
-    if test == 1:
-        return [0]
-    return(p)
+    else:
+        poly = poly[1:]
+        for i in range(len(poly)):
+            if poly[i] < 0:
+                return None
+            else:
+                p.append(poly[i] * (i + 1))
+        return p
