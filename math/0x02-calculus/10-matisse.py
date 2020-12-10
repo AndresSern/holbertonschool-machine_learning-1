@@ -8,13 +8,19 @@ def poly_derivative(poly):
     and f`(x) is [3,0,3]
     """
     p = []
-    if poly is None or not isinstance(poly, list):
+    if poly is None or not isinstance(poly, list) or not poly:
         return None
     for i in poly:
         if poly.index(i) == 1:
             p.append(poly[1])
         if poly.index(i) > 0 and poly.index(i) != 1:
             p.append(i*poly.index(i))
-    if sum(p) == 0:
+    if len(poly) == 1:
+        return [0]
+    test = 1
+    for i in p:
+        if i != 0:
+            test = 0
+    if test == 1:
         return [0]
     return(p)
