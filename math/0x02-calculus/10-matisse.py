@@ -8,7 +8,7 @@ def poly_derivative(poly):
     and f`(x) is [3,0,3]
     """
     p = []
-    if poly is None or not isinstance(poly, list) or not poly:
+    if poly is None or not isinstance(poly, list) or poly == []:
         return None
     if not all(isinstance(n, int) for n in poly):
         return None
