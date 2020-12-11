@@ -13,9 +13,6 @@ def poly_integral(poly, C=0):
     p = [C]
     if not isinstance(poly, list) or not poly:
         return None
-    if not all(isinstance(n, int) for n in poly):
-        return None
-
     if not isinstance(C, int):
         return None
     if len(poly) == 1:
