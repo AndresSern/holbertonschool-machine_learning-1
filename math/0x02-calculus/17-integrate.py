@@ -11,18 +11,16 @@ def poly_integral(poly, C=0):
     give [0, 5, 1.5, 0, 0.25]
     """
     p = [C]
-    if not isinstance(poly, list) or not poly:
+    if isinstance(poly, list) == 0 or poly == []:
         return None
-    if not isinstance(C, int):
+    if isinstance(C, (float, int)) == 0:
         return None
     if len(poly) == 1:
         return [C]
-    i = 0
-    for item in poly:
-        i = i + 1
-        m = item / i
+    for i in range(len(poly)):
+        m = poly[i] / (i + 1)
         if int(m) == m:
-            p.append((int)(m))
+            p.append(int(m))
         else:
             p.append(m)
     x = 0
