@@ -11,9 +11,9 @@ def poly_integral(poly, C=0):
     give [0, 5, 1.5, 0, 0.25]
     """
     p = [C]
-    if isinstance(poly, list) == 0 or poly == []:
+    if not isinstance(poly, list) or not poly:
         return None
-    if isinstance(C, (float, int)) == 0:
+    if not isinstance(C, int):
         return None
     if len(poly) == 1:
         return [C]
@@ -23,10 +23,4 @@ def poly_integral(poly, C=0):
             p.append(int(m))
         else:
             p.append(m)
-    x = 0
-    for i in range(len(p)-1, 0):
-        if(p[i] == 0 and x == 0):
-            p.pop(i)
-        else:
-            x = 1
     return p
