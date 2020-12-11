@@ -13,14 +13,16 @@ def poly_integral(poly, C=0):
     p = [C]
     if not isinstance(poly, list) or not poly:
         return None
-    if not isinstance(C, (float, int)):
+    if not isinstance(C, int):
         return None
     if len(poly) == 1:
         return [C]
-    for i in range(len(poly)):
-        m = poly[i] / (i + 1)
+    i = 0
+    for item in poly:
+        i = i + 1
+        m = item / i
         if int(m) == m:
-            p.append(int(m))
+            p.append((int)(m))
         else:
             p.append(m)
     x = 0
