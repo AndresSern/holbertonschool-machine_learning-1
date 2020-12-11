@@ -15,7 +15,7 @@ def poly_integral(poly, C=0):
         return None
     if not isinstance(C, int):
         return None
-    if len(poly) == 1:
+    if len(poly) == 1 and poly[0] == 0:
         return [C]
     for i in range(len(poly)):
         m = poly[i] / (i + 1)
