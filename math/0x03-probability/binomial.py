@@ -44,7 +44,7 @@ class Binomial:
         """ pmf fn"""
         if not isinstance(k, int):
             k = int(k)
-        if k >= 1 or k <= 0:
+        if k < 0:
             return 0
         q = 1 - self.p
         comb = self.fact(self.n) / (self.fact(self.n - k) * self.fact(k))
