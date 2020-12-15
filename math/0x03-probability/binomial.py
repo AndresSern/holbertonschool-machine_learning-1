@@ -49,3 +49,14 @@ class Binomial:
         q = 1 - self.p
         comb = self.fact(self.n) / (self.fact(self.n - k) * self.fact(k))
         return comb * (self.p ** k) * (q ** (self.n-k))
+
+    def cdf(self, k):
+        """  cumulative distribution function"""
+        if k < 0:
+            return 0
+        if not isinstance(k, int):
+            k = int(k)
+        cdf = 0
+        for i in range(0, int(k) + 1):
+            cdf += self.pmf(i)
+        return cdf
