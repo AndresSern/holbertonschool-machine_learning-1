@@ -25,7 +25,7 @@ class Exponential:
 
     def pdf(self, x):
         """ probability density function"""
-        if x < 0:
+        if x <= 0:
             return 0
         if not isinstance(x, int):
             k = int(k)
@@ -35,7 +35,7 @@ class Exponential:
 
     def cdf(self, x):
         """  cumulative distribution function"""
-        if x < 0:
+        if x <= 0:
             return 0
         if not isinstance(x, int):
             x = int(x)
