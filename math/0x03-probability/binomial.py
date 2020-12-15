@@ -16,7 +16,7 @@ class Binomial:
 
             else:
                 self.p = float(p)
-                self.n = round(n)
+                self.n = int(n)
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
