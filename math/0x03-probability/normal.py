@@ -7,8 +7,9 @@ Initialize Poisson
 class Normal:
     """ calculate Normal """
     def __init__(self, data=None, mean=0., stddev=1.):
+        self.data = data
         if data is None:
-            if stddev < 0:
+            if stddev <= 0:
                 raise ValueError("stddev must be a positive value")
             else:
                 self.mean = float(mean)
@@ -16,7 +17,7 @@ class Normal:
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
-            if not data[0] and data[1]:
+            if len(data) < 3:
                 raise ValueError("data must contain multiple values")
             else:
                 S = sum(data)
