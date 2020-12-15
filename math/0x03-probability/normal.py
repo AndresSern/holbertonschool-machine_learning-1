@@ -46,3 +46,15 @@ class Normal:
         c = ((x - self.mean) / self.stddev)
         pdf = (1 / b) * e ** (((1/2) * -1) * c ** 2)
         return pdf
+
+    def erf(self, x):
+        """ erf function"""
+        π = 3.1415926536
+        z = ((x ** 9) / 216)
+        b = x - ((x ** 3) / 3) + ((x ** 5) / 10) - ((x ** 7) / 42) + z
+        return (2 / π ** (1/2)) * (b)
+
+    def cdf(self, x):
+        """ cdf fn"""
+        erf_x_val = (x - self.mean) / (self.stddev * (2 ** (1/2)))
+        return (1/2) * (1 + self.erf(erf_x_val))
