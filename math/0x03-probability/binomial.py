@@ -32,3 +32,16 @@ class Binomial:
                 n = mean / p
                 self.n = round(n)
                 self.p = float(mean / self.n)
+
+    def fact(self, x):
+        """ fact fn"""
+        fact = 1
+        for i in range(1, int(x) + 1):
+            fact = fact * i
+        return fact
+
+    def pmf(self, k):
+        """ pmf fn"""
+        q = 1 - self.p
+        comb = self.fact(self.n) / (self.fact(self.n - k) * self.fact(k))
+        return comb * (self.p ** k) * (q ** (self.n-k))
