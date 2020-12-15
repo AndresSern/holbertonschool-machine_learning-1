@@ -16,7 +16,7 @@ class Binomial:
 
             else:
                 self.p = float(p)
-                self.n = int(n)
+                self.n = round(n)
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
@@ -30,5 +30,5 @@ class Binomial:
                     varience += (i - mean) ** 2 / len(data)
                 p = 1 - (varience / mean)
                 n = mean / p
-                self.n = int(round(n))
+                self.n = round(n)
                 self.p = float(mean / self.n)
