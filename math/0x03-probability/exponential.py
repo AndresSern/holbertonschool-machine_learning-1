@@ -27,8 +27,6 @@ class Exponential:
         """ probability density function"""
         if x <= 0:
             return 0
-        if not isinstance(x, int):
-            k = int(k)
         e = 2.7182818285
         pdf = (self.lambtha) * (e ** ((self.lambtha) * - 1 * x))
         return pdf
@@ -37,8 +35,6 @@ class Exponential:
         """  cumulative distribution function"""
         if x <= 0:
             return 0
-        if not isinstance(x, int):
-            x = int(x)
         e = 2.7182818285
         cdf = 1 - (e ** ((self.lambtha) * - 1 * x))
         return cdf
