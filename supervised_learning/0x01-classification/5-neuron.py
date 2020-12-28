@@ -55,7 +55,7 @@ class Neuron:
     def evaluate(self, X, Y):
         """ evaluate output 0 or 1"""
         Sigmoid_a = self.forward_prop(X)
-        pred_evalute = np.where(Sigmoid_a < 5, 0, 1)
+        pred_evalute = np.where(Sigmoid_a < 0.5, 0, 1)
         cost = self.cost(Y, Sigmoid_a)
         return pred_evalute, cost
 
