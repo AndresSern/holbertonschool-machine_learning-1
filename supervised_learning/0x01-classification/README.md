@@ -71,3 +71,27 @@ used:
 * evaluate
 ## 15. Upgrade Train NeuralNetwork
 Update the public method train to def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100)
+
+------------------------------------------------------------------------------------
+## 16. DeepNeuralNetwork
+DeepNeuralNetwork that defines a deep neural network performing binary classification
+* layers is a list representing the number of nodes in each layer of the network
+ `* The first value in layers represents the number of nodes in the first layer,
+* L: The number of layers in the neural network.
+* cache: A dictionary to hold all intermediary values of the network. Upon instantiation, it should be set to an empty dictionary.
+* weights: A dictionary to hold all weights and biased of the network. 
+__New Initialization techniques__
+__He initialization__: we just simply multiply random initialization with
+![alt text](https://miro.medium.com/max/700/1*zxD6Nr6TyAb8JEG6oXAjkg.png)
+## 17. Privatize DeepNeuralNetwork
+## 18. DeepNeuralNetwork Forward Propagation
+z = np.matmul(wi, Ai-1) + b
+Sigmoid_a = 1 / (1 + np.exp(-z))
+self.__cache["A"+str(i+1)] = Sigmoid_a
+## 19. DeepNeuralNetwork Cost
+## 20. Evaluate DeepNeuralNetwork 
+## 21. DeepNeuralNetwork Gradient Descent
+using backpropagation
+![alt text](https://miro.medium.com/max/500/0*ETudkFMzVEMsUrVD.png)
+and g(x) = 1 / (1 + np.exp(-z))
+dg(x) = g(x)(1- g(x))
