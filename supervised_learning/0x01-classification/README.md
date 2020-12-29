@@ -92,6 +92,9 @@ self.__cache["A"+str(i+1)] = Sigmoid_a
 ## 20. Evaluate DeepNeuralNetwork 
 ## 21. DeepNeuralNetwork Gradient Descent
 using backpropagation
+
 ![alt text](https://miro.medium.com/max/500/0*ETudkFMzVEMsUrVD.png)
+
 and g(x) = 1 / (1 + np.exp(-z))
+
 dg(x) = g(x)(1- g(x))
