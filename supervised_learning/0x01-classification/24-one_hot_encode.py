@@ -6,6 +6,9 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """ ONE HOT ENCODE"""
+    m = Y.shape
+    if not m or m == 0:
+        return None
     if not isinstance(Y, np.ndarray)or classes < 3:
         return None
     if Y.size == 0:
