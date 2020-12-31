@@ -6,14 +6,13 @@ import numpy as np
 
 def one_hot_encode(Y, classes):
     """ ONE HOT ENCODE"""
-    m = Y.shape
-    if not m or m == 0:
+    if isinstance(Y, np.ndarray)or classes > 3:
+        if Y.size != 0:
+            encode = np.zeros((Y.size, classes))
+            encode[np.arange(Y.size), Y] = 1
+            res = encode.T
+            return res
+        else:
+            return None
+    else:
         return None
-    if not isinstance(Y, np.ndarray)or classes < 3:
-        return None
-    if Y.size == 0:
-        return None
-    encode = np.zeros((Y.size, classes))
-    encode[np.arange(Y.size), Y] = 1
-    res = encode.T
-    return res
