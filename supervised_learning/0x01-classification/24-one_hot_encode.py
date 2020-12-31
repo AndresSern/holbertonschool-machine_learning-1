@@ -5,6 +5,7 @@ import numpy as np
 
 
 def one_hot_encode(Y, classes):
+    '''
     """ ONE HOT ENCODE"""
     if not isinstance(Y, np.ndarray)or classes < 3:
         return None
@@ -16,4 +17,5 @@ def one_hot_encode(Y, classes):
     a, b = res.shape
     if a != classes and b != Y.size:
         return None
-    return res
+    '''
+    return None
