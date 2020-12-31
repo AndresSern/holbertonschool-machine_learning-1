@@ -12,4 +12,9 @@ def one_hot_encode(Y, classes):
         return None
     encode = np.zeros((Y.size, classes))
     encode[np.arange(Y.size), Y] = 1
-    return encode.T
+    res = encode.T
+    a = Y.shape[0]
+    aa, bb = res.shape
+    if aa != classes or bb != a:
+        return None
+    return res
