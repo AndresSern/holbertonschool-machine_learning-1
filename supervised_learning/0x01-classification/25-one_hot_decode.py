@@ -5,7 +5,10 @@ import numpy as np
 
 
 def one_hot_decode(one_hot):
+    """ one hot decode"""
     if not isinstance(one_hot, np.ndarray):
+        return None
+    if one_hot.size == 0:
         return None
     lst = []
     one_hot = one_hot.T
