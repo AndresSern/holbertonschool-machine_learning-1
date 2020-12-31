@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """ one hot encode """
 
+import numpy as np
+
 
 def one_hot_encode(Y, classes):
-    onehot_encoded = []
-    for value in Y:
-        letter = [0. for _ in range(classes)]
-        letter[value] = 1
-        onehot_encoded.append(letter)
-    return onehot_encoded
+    """ ONE HOT ENCODE"""
+    if not isinstance(Y, np.ndarray)or classes < 3:
+        return None
+    if Y.all() is None:
+        return None
+    encode = np.zeros((Y.size, classes))
+    encode[np.arange(Y.size), Y] = 1
+    return encode.T
