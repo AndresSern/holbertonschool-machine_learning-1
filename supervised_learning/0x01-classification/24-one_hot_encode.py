@@ -11,4 +11,4 @@ def one_hot_encode(Y, classes):
         return None
     encode = np.zeros((Y.size, classes))
     encode[np.arange(Y.size), Y] = 1
-    return encode
+    return encode.T
