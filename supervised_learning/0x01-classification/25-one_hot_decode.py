@@ -17,4 +17,7 @@ def one_hot_decode(one_hot):
             if one_hot[i][j] == 1:
                 lst.append(j)
     arr = np.array(lst)
+    a, b = one_hot.shape
+    if arr.shape != (b,):
+        return None
     return arr
