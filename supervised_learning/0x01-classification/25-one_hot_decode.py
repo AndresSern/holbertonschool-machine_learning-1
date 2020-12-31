@@ -6,6 +6,7 @@ import numpy as np
 
 def one_hot_decode(one_hot):
     """ one hot decode"""
+    a, b = one_hot.shape
     if not isinstance(one_hot, np.ndarray):
         return None
     if one_hot.size == 0:
@@ -17,7 +18,6 @@ def one_hot_decode(one_hot):
             if one_hot[i][j] == 1:
                 lst.append(j)
     arr = np.array(lst)
-    a, b = one_hot.shape
     if arr.shape != (b,):
         return None
     return arr
