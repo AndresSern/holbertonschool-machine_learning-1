@@ -5,21 +5,14 @@ import numpy as np
 
 
 def one_hot_encode(Y, classes):
-    
     """ ONE HOT ENCODE"""
     if not isinstance(Y, np.ndarray)or classes < 3:
         return None
     if Y.size == 0 or classes is None:
         return None
-    if np.array(list(Y)).dtype == 'int64' or  np.array(list(Y)).dtype == 'int32':
-        
-        encode = np.zeros((Y.size, classes))
-        encode[np.arange(Y.size), Y] = 1
-        res = encode.T
-        a, b = res.shape
-        if a != classes and b != Y.size:
-            return None
-        
-        return res
-    else:
+    Y = Y.astype(int)
+    res = np.eye(classes)[Y]
+    a, b = res.shape
+    if a != classes and b != Y.size:
         return None
+    return res
