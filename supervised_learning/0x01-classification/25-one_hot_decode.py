@@ -10,6 +10,8 @@ def one_hot_decode(one_hot):
         return None
     if one_hot.size == 0:
         return None
+    if one_hot.ndim != 2:
+        return None
     lst = []
     one_hot = one_hot.T
     for i in range(len(one_hot)):
