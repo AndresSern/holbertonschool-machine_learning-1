@@ -160,14 +160,13 @@ class DeepNeuralNetwork:
     def save(self, filename):
         if ".pkl" not in filename:
             filename = filename+".pkl"
-            fileObject = open(filename, 'wb')
-            pickle.dump(filename, fileObject)
-            fileObject.close()
+        pickle.dump(self, open(filename, 'wb'))
 
     @staticmethod
     def load(filename):
-        fileObject = open(filename, 'rb')
-        if not fileObject:
+        try:
+            fileObject = open(filename, 'rb')
+        except Exception:
             return None
-        res = pickle.load(fileObject, fix_imports=True, encoding="ASCII")
-        return res
+        b = pickle.load(fileObject)
+        return b
