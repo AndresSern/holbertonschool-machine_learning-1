@@ -12,12 +12,9 @@ def one_hot_encode(Y, classes):
     """
     if not isinstance(Y, np.ndarray)or classes < 3:
         return None
-    if Y.size == 0 or classes is None:
-        return None
     try:
         res = np.eye(classes)[Y]
         res = res.T
-        a, b = res.shape
         return res
     except Exception:
         return None
