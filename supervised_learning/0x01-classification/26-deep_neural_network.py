@@ -158,15 +158,20 @@ class DeepNeuralNetwork:
         return self.evaluate(X, Y)[0], cost
 
     def save(self, filename):
+        """save model """
         if ".pkl" not in filename:
             filename = filename+".pkl"
-        pickle.dump(self, open(filename, 'wb'))
+        with open(filename, 'wb') as file:
+            pickle.dump(self, file)
 
     @staticmethod
     def load(filename):
+        """ load model"""
         try:
             fileObject = open(filename, 'rb')
         except Exception:
             return None
-        b = pickle.load(fileObject)
-        return b
+        with open(filename, 'rb') as file:
+            Pickled_LR_Model = pickle.load(file)
+
+        return Pickled_LR_Model
