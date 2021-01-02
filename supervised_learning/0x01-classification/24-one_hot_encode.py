@@ -18,8 +18,6 @@ def one_hot_encode(Y, classes):
         res = np.eye(classes)[Y]
         res = res.T
         a, b = res.shape
-        if a != classes and b != Y.size:
-            return None
         return res
     except Exception:
         return None
