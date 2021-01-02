@@ -9,12 +9,14 @@ def one_hot_encode(Y, classes):
     Y is a numpy.ndarray containing numeric class labels
     m is the number of examples
     classes is the maximum number of classes found in Y
+    np.eye
     """
-    if not isinstance(Y, np.ndarray)or classes < 3:
+    if not isinstance(Y, np.ndarray):
         return None
     try:
-        res = np.eye(classes)[Y]
-        res = res.T
+        encode = np.zeros((Y.size, classes))
+        encode[np.arange(Y.size), Y] = 1
+        res = encode.T
         return res
     except Exception:
         return None
