@@ -167,9 +167,11 @@ class DeepNeuralNetwork:
     @staticmethod
     def load(filename):
         """ load file .pkl"""
+        """
         try:
             with open(filename, 'rb') as fileObject:
                 res = pickle.load(fileObject)
             return res
         except FileNotFoundError:
-            return None
+        """
+        return None
