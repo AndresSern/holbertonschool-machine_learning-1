@@ -155,23 +155,20 @@ class DeepNeuralNetwork:
             plt.xlabel('iteration')
             plt.plot(xValue, yValue)
             plt.show()
-        return self.evaluate(X, Y)[0], cost
+        return self.evaluate(X, Y)
 
     def save(self, filename):
-        """save model """
-        if filename.endswith(".pkl"):
+        """ save file .pkl"""
+        if not(filename.endswith(".pkl")):
             filename = filename+".pkl"
-        with open(filename, 'wb') as file:
-            pickle.dump(self, file)
+        pickle.dump(self, open(filename, 'wb'))
 
     @staticmethod
     def load(filename):
-        """ load model"""
+        """ load file .pkl"""
         try:
             fileObject = open(filename, 'rb')
         except Exception:
             return None
-        with open(filename, 'rb') as file:
-            Pickled_LR_Model = pickle.load(file)
-
-        return Pickled_LR_Model
+        res = pickle.load(fileObject)
+        return res
