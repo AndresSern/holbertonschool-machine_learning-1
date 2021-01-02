@@ -4,7 +4,6 @@
  neural network performing binary classification
 """
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 class DeepNeuralNetwork:
@@ -122,7 +121,6 @@ class DeepNeuralNetwork:
         -forward_prop
         -gradient_descent
         - evaluate
-
         """
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
