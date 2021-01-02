@@ -168,7 +168,7 @@ class DeepNeuralNetwork:
         """ load file .pkl"""
         try:
             fileObject = open(filename, 'rb')
-        except Exception:
+        except FileNotFoundError:
             return None
         res = pickle.load(fileObject)
         return res
