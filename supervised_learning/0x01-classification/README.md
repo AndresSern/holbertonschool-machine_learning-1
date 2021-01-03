@@ -98,3 +98,54 @@ using backpropagation
 and g(x) = 1 / (1 + np.exp(-z))
 
 dg(x) = g(x)(1- g(x))
+## 22. Train DeepNeuralNetwork
+Returns the evaluation of the training data after
+iterations of training have occurred
+used:
+* forward_prop
+* gradient_descent
+* evaluate
+## 23. Upgrade Train DeepNeuralNetwork
+Update the public method train to 
+def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100)
+## 24. One-Hot Encode 
+def one_hot_encode(Y, classes): 
+that converts a numeric label vector into a one-hot matrix
+* Y is a numpy.ndarray with shape (m,) containing numeric class labels
+* m is the number of examples
+* classes is the maximum number of classes found in Y
+Returns: a one-hot encoding of Y with shape (classes, m), or None on failure
+## 25. One-Hot Decode
+converts a one-hot matrix into a vector of labels:
+## 26. Persistence is Key
+* Create the instance method def save(self, filename):
+
+* Saves the instance object to a file in pickle format
+* filename is the file to which the object should be saved
+
+* Create the static method def load(filename):
+
+* Loads a pickled DeepNeuralNetwork object
+* filename is the file from which the object should be loaded
+
+## 27. Update DeepNeuralNetwork 
+Update the class DeepNeuralNetwork to perform multiclass classification
+update the instance methods forward_prop, cost, and evaluate
+
+![alt text](https://miro.medium.com/max/250/1*D4p2CsxVe50MoJIjN0YFNw.png)
+
+![alt text](https://miro.medium.com/max/700/1*ReYpdIZ3ZSAPb2W8cJpkBg.jpeg)
+
+## 28. All the Activations 
+Update the class DeepNeuralNetwork to allow different activation functions
+activation represents the type of activation function used in the hidden layers
+* sig represents a sigmoid activation
+* tanh represents a tanh activation
+
+![alt text](https://cdn-images-1.medium.com/max/970/1*KEMiN1powp_MwhVc9MFTSw.png)
+
+```sh
+def tanh_prime(z):
+	return 1 - np.power(tanh(z), 2)
+
+```
