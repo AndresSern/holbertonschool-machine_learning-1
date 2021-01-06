@@ -10,5 +10,5 @@ def create_layer(prev, n, activation):
                                                             mode="FAN_AVG")
     layer = tf.layers.dense(prev, units=n, activation=activation,
                             kernel_initializer=kernel, name="layer",
-                            )
+                            reuse=tf.AUTO_REUSE)
     return layer
