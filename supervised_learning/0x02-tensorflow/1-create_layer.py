@@ -12,6 +12,6 @@ def create_layer(prev, n, activation):
                             use_bias=True,
                             kernel_initializer=kernel, name="layer",
                             bias_regularizer=None, activity_regularizer=None,
-                            kernel_constraint=True,
-                            bias_constraint=None)
+                            kernel_constraint=None,
+                            bias_constraint=True)
     return layer
