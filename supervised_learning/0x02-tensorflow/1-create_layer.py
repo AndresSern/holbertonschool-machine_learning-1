@@ -13,5 +13,5 @@ def create_layer(prev, n, activation):
                             kernel_initializer=kernel, name="layer",
                             bias_regularizer=None, activity_regularizer=None,
                             kernel_constraint=None,
-                            bias_constraint=True)
+                            bias_constraint=True,bias_initializer=tf.zeros_initializer())
     return layer
