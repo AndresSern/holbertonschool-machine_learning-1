@@ -10,7 +10,5 @@ def create_layer(prev, n, activation):
                                                             mode="FAN_AVG")
     layer = tf.layers.dense(prev, units=n, activation=activation,
                             kernel_initializer=kernel, name="layer",
-                            bias_regularizer=None, activity_regularizer=None,
-                            kernel_constraint=None,
-                            bias_constraint=True,trainable=None)
+                            )
     return layer
