@@ -2,8 +2,10 @@
 """ calculate accuracy"""
 
 import tensorflow as tf
+
+
 def calculate_accuracy(y, y_pred):
     """ calculate accuracy"""
-    correct_prediction = tf.equal(y_pred, y)
+    correct_prediction = tf.equal(y, y_pred)
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
     return accuracy
