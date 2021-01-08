@@ -52,12 +52,13 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
                 x: X_valid,
                 y: Y_valid
             })
-            if(i == 0 or i % 100 == 0 or i == iterations):
+            if(i == 0 or i % 100 == 0):
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(train_loss))
                 print("\tTraining Accuracy: {}".format(train_acc))
                 print("\tValidation Cost: {}".format(valid_loss))
                 print("\tValidation Accuracy: {}".format(
                     valid_acc))
-            sess.run(train_op, {x: X_train, y: Y_train})
+            if(i != iterations):
+                sess.run(train_op, {x: X_train, y: Y_train})
         return saver.save(sess, save_path)
