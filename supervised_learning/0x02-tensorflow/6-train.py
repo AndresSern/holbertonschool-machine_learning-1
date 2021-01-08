@@ -52,7 +52,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
                 x: X_valid,
                 y: Y_valid
             })
-            if(i == 0 or i % 100 == 0):
+            if(i == 0 or i % 100 == 0 or i == iterations):
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(train_loss))
                 print("\tTraining Accuracy: {}".format(train_acc))
