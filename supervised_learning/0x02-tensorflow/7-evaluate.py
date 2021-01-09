@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 ''' evaluate fn'''
 
-import matplotlib.pyplot as plt
-import numpy as np
+
 import tensorflow as tf
 
 
@@ -26,6 +25,7 @@ def evaluate(X, Y, save_path):
         y = ay[0]
 
         y_pred = sess.run(y_pred, {x: X, y: Y})
-        accuracy = sess.run(aaccuracy, {x: X, y: Y})
-        loss = sess.run(aloss, {x: X, y: Y})
+        accuracy = sess.run(accuracy, {x: X, y: Y})
+        loss = sess.run(loss, {x: X, y: Y})
+
     return(y_pred, accuracy, loss)
