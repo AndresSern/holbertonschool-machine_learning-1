@@ -104,6 +104,6 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
                     z = step + 1
                     if(z % 100 == 0 and z > 0):
                         print("\tStep {}:".format(z))
-                        print("\tTraining Cost: {}".format(train_loss))
-                        print("\tTraining Accuracy: {}".format(train_acc))
+                        print("\t\tTraining Cost: {}".format(train_loss))
+                        print("\t\tTraining Accuracy: {}".format(train_acc))
         return saver.save(sess, save_path)
