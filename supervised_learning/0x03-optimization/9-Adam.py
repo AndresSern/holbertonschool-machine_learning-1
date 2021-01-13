@@ -17,6 +17,7 @@ and the new second moment, respectively
 
 
 def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
+    """ adam prop"""
     mom_dw = (beta1 * v) + ((1 - beta1)*grad)
     rms_dw = (beta2 * s) + ((1 - beta2)*grad**2)
     mom_dw_corr = mom_dw/(1 - beta1**t)
