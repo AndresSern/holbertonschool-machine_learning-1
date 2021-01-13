@@ -79,12 +79,11 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
             print("\tValidation Accuracy: {}".format(
                 valid_acc))
 
-            mini_batch_X_t = split_data_batch(X_shuffled_train,
-                                              batch, batch_size)
-            mini_batch_Y_t = split_data_batch(Y_shuffled_train,
-                                              batch, batch_size)
-
             if epoche < epochs:
+                mini_batch_X_t = split_data_batch(X_shuffled_train,
+                                                  batch, batch_size)
+                mini_batch_Y_t = split_data_batch(Y_shuffled_train,
+                                                  batch, batch_size)
                 batchline = len(mini_batch_X_t)
                 for step in range(0, batchline):
 
