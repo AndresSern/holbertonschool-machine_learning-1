@@ -54,3 +54,42 @@ that updates a variable using the gradient descent with momentum optimization al
 * s is the previous second moment of var
 * t is the time step used for bias correction
 * Returns: the updated variable, the new first moment, and the new second moment, respectively
+## 11. Learning Rate Decay  
+The learning rate is a hyperparameter that controls how much to change the model in response to the estimated error each time the model weights are updated. Choosing the learning rate is challenging as a value too small may result in a long training process that could get stuck, whereas a value too large may result in learning a sub-optimal set of weights too fast or an unstable training process.
+
+Write the function def learning_rate_decay(alpha, decay_rate, global_step, decay_step): that updates the learning rate using inverse time decay in numpy:
+
+* alpha is the original learning rate
+* decay_rate is the weight used to determine the rate at which alpha will decay
+* global_step is the number of passes of gradient descent that have elapsed
+* decay_step is the number of passes of gradient descent that should occur before  alpha is decayed further
+* the learning rate decay should occur in a stepwise fashion
+* Returns: the updated value for alpha
+
+## 13. Batch Normalization
+>Batch normalization is a technique for training very deep neural networks that 
+>standardizes the inputs to a layer for each mini-batch. This has the effect of 
+>stabilizing the learning process and dramatically reducing the number of training 
+>epochs required to train deep networks.
+
+Write the function def batch_norm(Z, gamma, beta, epsilon): that normalizes an unactivated output of a neural network using batch normalization:
+
+* Z is a numpy.ndarray of shape (m, n) that should be normalized
+* m is the number of data points
+* n is the number of features in Z
+* gamma is a numpy.ndarray of shape (1, n) containing the scales used for batch normalization
+* beta is a numpy.ndarray of shape (1, n) containing the offsets used for batch normalization
+* epsilon is a small number used to avoid division by zero
+* Returns: the normalized Z matrix
+
+## 14. Batch Normalization Upgraded
+
+the function def create_batch_norm_layer(prev, n, activation): that creates a batch normalization layer for a neural network in tensorflow:
+
+* prev is the activated output of the previous layer
+* n is the number of nodes in the layer to be created
+* activation is the activation function that should be used on the output of the layer
+* you should use the tf.layers.Dense layer as the base layer with kernal initializer tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
+* your layer should incorporate two trainable parameters, gamma and beta, initialized as vectors of 1 and 0 respectively
+* you should use an epsilon of 1e-8
+* Returns: a tensor of the activated output for the layer
