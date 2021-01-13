@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import tensorflow as tf
 """
 *prev is the activated output of the previous layer
 *n is the number of nodes in the layer to be created
@@ -9,12 +8,13 @@ should be used on the output of the layer
 *epsilon of 1e-8
 Returns: a tensor of the activated output for the layer
 """
+import tensorflow as tf
 
 
 def create_batch_norm_layer(prev, n, activation):
     """batch normalization layer for a neural network in tensorflow"""
     kernel = tf.contrib.layers.variance_scaling_initializer(mode="FAN_AVG")
-    layer = tf.layers.Dense(units=n, activation=activation,
+    layer = tf.layers.Dense(units=n, activation=None,
                             kernel_initializer=kernel, name="layer",
                             )
 
