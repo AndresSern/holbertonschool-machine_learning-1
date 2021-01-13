@@ -41,9 +41,9 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
         x = tf.get_collection('x', scope=None)
         y = tf.get_collection('y', scope=None)
 
-        loss = tf.get_collection('loss', scope=None)
-        accuracy = tf.get_collection('accuracy', scope=None)
-        train_op = tf.get_collection('train_op', scope=None)
+        loss = tf.get_collection('loss', scope=None)[0]
+        accuracy = tf.get_collection('accuracy', scope=None)[0]
+        train_op = tf.get_collection('train_op', scope=None)[0]
         x = x[0]
         y = y[0]
 
