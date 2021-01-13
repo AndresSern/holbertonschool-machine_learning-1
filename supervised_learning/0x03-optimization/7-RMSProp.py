@@ -11,10 +11,9 @@ grad is a numpy.ndarray containing the gradient of var
 s is the previous second moment of var
 Returns: the updated variable and the new moment, respectively
 """
-import numpy as np
 
 
 def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     vdw = (beta2 * s) + ((1 - beta2)*grad**2)
-    new = var - alpha * (grad / (np.sqrt(vdw)+epsilon))
+    new = var - alpha * (grad / ((vdw**0.5)+epsilon))
     return new, vdw

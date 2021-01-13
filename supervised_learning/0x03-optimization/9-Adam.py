@@ -14,7 +14,6 @@ t is the time step used for bias correction
 Returns: the updated variable, the new first moment,
 and the new second moment, respectively
 """
-import numpy as np
 
 
 def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
@@ -22,5 +21,5 @@ def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
     rms_dw = (beta2 * s) + ((1 - beta2)*grad**2)
     mom_dw_corr = mom_dw/(1 - beta1**t)
     rms_dw_corr = rms_dw/(1-beta2**t)
-    w = var - alpha * (mom_dw_corr/(np.sqrt(rms_dw_corr)+epsilon))
+    w = var - alpha * (mom_dw_corr/((rms_dw_corr**0.5)+epsilon))
     return w, mom_dw, rms_dw
