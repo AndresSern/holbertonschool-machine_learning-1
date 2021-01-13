@@ -18,7 +18,10 @@ def split_data_batch(data, batch, batch_size=32):
     i = 0
 
     for x in range(batch):
-        batches.append(data[i * batch_size:((i + 1) * batch_size)])
+        if i == batch - 1:
+            batches.append(data[i * batch_size:])
+        else:
+            batches.append(data[i * batch_size:((i + 1) * batch_size)])
         i = i + 1
     return batches
 
@@ -45,7 +48,8 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
         y = y[0]
 
         batch = X_train.shape[0]/batch_size
-        batch = round(batch)
+        if batch % 1 != 0:
+            batch = int(batch) + 1
 
         for epoche in range(epochs+1):
             X_shuffled_train, Y_shuffled_train = shuffle_data(X_train, Y_train)
