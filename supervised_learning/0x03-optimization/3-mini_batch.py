@@ -18,8 +18,8 @@ def split_data_batch(data, batch, batch_size=32):
     i = 0
 
     for x in range(batch):
-        batches.append(data[i * batch_size:((i + 1) * batch_size)])
-        i = i + 1
+        batches.append(data[i:(i+batch_size)])
+        i += batch_size
     return batches
 
 
@@ -43,7 +43,7 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
         train_op = tf.get_collection('train_op', scope=None)[0]
 
         batch = X_train.shape[0]/batch_size
-        if batch % 1 != 0:
+        if batch % int(batch) != 0:
             batch = int(batch) + 1
 
         for epoche in range(epochs+1):
