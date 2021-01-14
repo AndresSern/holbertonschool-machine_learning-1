@@ -7,21 +7,20 @@ import tensorflow as tf
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
-def split_data_batch(data, batch, batch_size=32):
+def split_data_batch(data, batch_size=32):
     """
     split_data_batch
     data = batch * batch_size
 
     """
-
+    batch = data.shape[0]/batch_size
+    if batch % int(batch) != 0:
+        batch = int(batch) + 1
     batches = []
     i = 0
 
     for x in range(batch):
-        if x == batch - 1:
-            batches.append(data[i:])
-        else:
-            batches.append(data[i:(i+batch_size)])
+        batches.append(data[i:(i+batch_size)])
         i += batch_size
     return batches
 
@@ -45,10 +44,6 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
         accuracy = tf.get_collection('accuracy', scope=None)[0]
         train_op = tf.get_collection('train_op', scope=None)[0]
 
-        batch = X_train.shape[0]/batch_size
-        if batch % int(batch) != 0:
-            batch = int(batch) + 1
-
         for epoche in range(epochs+1):
             X_shuffled_train, Y_shuffled_train = shuffle_data(X_train, Y_train)
             train_acc, train_loss = sess.run((accuracy, loss),
@@ -65,9 +60,9 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
 
             if epoche < epochs:
                 mini_batch_X_t = split_data_batch(X_shuffled_train,
-                                                  batch, batch_size)
+                                                  batch_size)
                 mini_batch_Y_t = split_data_batch(Y_shuffled_train,
-                                                  batch, batch_size)
+                                                  batch_size)
 
                 batchline = len(mini_batch_X_t) + 1
                 for step in range(1, batchline):
