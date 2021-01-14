@@ -18,7 +18,10 @@ def split_data_batch(data, batch, batch_size=32):
     i = 0
 
     for x in range(batch):
-        batches.append(data[i:(i+batch_size)])
+        if x == batch - 1:
+            batches.append(data[i:])
+        else:
+            batches.append(data[i:(i+batch_size)])
         i += batch_size
     return batches
 
