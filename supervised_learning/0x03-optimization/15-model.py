@@ -111,6 +111,7 @@ def split_data_batch(data, batch_size=32):
 def model(Data_train, Data_valid, layers, activations,
           alpha=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8, decay_rate=1,
           batch_size=32, epochs=5, save_path='/tmp/model.ckpt'):
+    """ my model"""
 
     X_train = Data_train[0]
     Y_train = Data_train[1]
