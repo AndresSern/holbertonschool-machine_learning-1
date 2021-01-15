@@ -58,21 +58,20 @@ def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
                                                   batch_size)
                 mini_batch_Y_t = split_data_batch(Y_shuffled_train,
                                                   batch_size)
-
-                batchline = len(mini_batch_X_t) + 1
-                for step in range(1, batchline):
+                batchline = len(mini_batch_X_t)
+                for step in range(0, batchline):
 
                     sess.run(train_op, {
-                        x: mini_batch_X_t[step - 1],
-                        y: mini_batch_Y_t[step - 1]
+                        x: mini_batch_X_t[step],
+                        y: mini_batch_Y_t[step]
                     })
 
                     train_loss, train_acc = sess.run((loss, accuracy), {
-                        x: mini_batch_X_t[step - 1],
-                        y: mini_batch_Y_t[step - 1]
+                        x: mini_batch_X_t[step],
+                        y: mini_batch_Y_t[step]
                     })
-                    if(step % 100 == 0 and step > 0):
-                        print("\tStep {}:".format(step))
+                    if((step + 1) % 100 == 0 and (step + 1) > 0):
+                        print("\tStep {}:".format(step + 1))
                         print("\t\tCost: {}".format(train_loss))
                         print("\t\tAccuracy: {}".format(train_acc))
         return saver.save(sess, save_path)
