@@ -13,16 +13,11 @@ def split_data_batch(data, batch_size=32):
     data = batch * batch_size
 
     """
-    batch = data.shape[0]/batch_size
-    if batch % int(batch) != 0:
-        batch = int(batch) + 1
     batches = []
-    i = 0
-
-    for x in range(batch):
-        batches.append(data[i:(i+batch_size)])
-        i += batch_size
-    return batches
+    for i in range(batch_size, data.shape[0]+batch_size, batch_size):
+        part = data[i-batch_size:i]
+        batches.append(part)
+    return(batches)
 
 
 def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
