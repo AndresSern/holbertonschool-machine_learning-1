@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" adam train fn """
 
 import numpy as np
 import tensorflow as tf
