@@ -15,5 +15,5 @@ def l2_reg_cost(cost):
         the network accounting for L2 regularization
     '''
     a = cost + tf.losses.get_regularization_loss(scope=None)
-    l1 = tf.reduce_sum(tf.abs(a))
-    return l1
+    b = tf.compat.v1.norm(a, ord='euclidean', axis=None, keepdims=None, name=None, keep_dims=None)
+    return b
