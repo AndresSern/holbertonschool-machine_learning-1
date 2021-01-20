@@ -14,4 +14,9 @@ def l2_reg_cost(cost):
         *Returns: a tensor containing the cost of
         the network accounting for L2 regularization
     '''
-    return cost + tf.contrib.losses.get_regularization_losses()
+    regularizer = tf.contrib.layers.l2_regularizer(scale=0.1)
+    reg_variables = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+    reg_term = tf.contrib.layers.apply_regularization(regularizer,
+                                                      reg_variables)
+    cost += reg_term
+    return cost
