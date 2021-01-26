@@ -5,9 +5,7 @@ and also analyze validaiton data
 and  also train the model using early stopping
 """
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras.utils import to_categorical
+import tensorflow.keras as k
 
 
 def train_model(network, data, labels, batch_size, epochs,
@@ -33,12 +31,15 @@ def train_model(network, data, labels, batch_size, epochs,
     Returns: the History object generated after training the model
     """
     if validation_data and early_stopping:
-        callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=patience,verbose=verbose)
+        callback = k.callbacks.EarlyStopping(monitor='val_loss',
+                                             patience=patience,
+                                             verbose=verbose)
         history = network.fit(x=data, y=labels, batch_size=batch_size,
-                            epochs=epochs, verbose=verbose,
-                            validation_data=validation_data, shuffle=shuffle, callbacks=[callback])
+                              epochs=epochs, verbose=verbose,
+                              validation_data=validation_data,
+                              shuffle=shuffle, callbacks=[callback])
     else:
         history = network.fit(x=data, y=labels, batch_size=batch_size,
-                        epochs=epochs, verbose=verbose,
-                        validation_data=validation_data, shuffle=shuffle)
+                              epochs=epochs, verbose=verbose,
+                              validation_data=validation_data, shuffle=shuffle)
     return history
