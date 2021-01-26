@@ -3,10 +3,6 @@
 trains a model using mini-batch gradient descent
 """
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras.utils import to_categorical
-
 
 def train_model(network, data, labels, batch_size,
                 epochs, verbose=True, shuffle=False):
