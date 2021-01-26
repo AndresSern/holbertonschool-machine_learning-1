@@ -3,6 +3,8 @@
 trains a model using mini-batch gradient descent
 """
 
+import tensorflow.keras as k
+
 
 def train_model(network, data, labels, batch_size,
                 epochs, verbose=True, shuffle=False):
