@@ -4,9 +4,7 @@ trains a model using mini-batch gradient descent
 and also analyze validaiton data
 """
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras.utils import to_categorical
+import tensorflow.keras as k
 
 
 def train_model(network, data, labels, batch_size, epochs,
