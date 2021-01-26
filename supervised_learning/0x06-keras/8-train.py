@@ -48,6 +48,11 @@ def train_model(network, data, labels, batch_size, epochs,
                                                  patience=patience,
                                                  verbose=verbose)
             calbacks.append(callback)
+        if save_best:
+            callback = k.callbacks.ModelCheckpoint(filepath=filepath,
+                                                   monitor="val_loss",
+                                                   save_best_only=True)
+            calbacks.append(callback)
         history = network.fit(x=data, y=labels, batch_size=batch_size,
                               epochs=epochs, verbose=verbose,
                               validation_data=validation_data,
@@ -57,6 +62,5 @@ def train_model(network, data, labels, batch_size, epochs,
                               pochs=epochs, verbose=verbose,
                               validation_data=validation_data,
                               shuffle=shuffle)
-    if save_best:
-        history.save(filepath)
+
     return history
