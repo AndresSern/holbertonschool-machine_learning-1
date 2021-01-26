@@ -3,13 +3,7 @@
 that builds a neural network with the Keras library
 You are not allowed to use the Input class
 """
-
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras import Sequential
-from tensorflow._api.v1.keras.layers import Dense
-from tensorflow._api.v1.keras.layers import Dropout
-from tensorflow._api.v1.keras import regularizers
+import tensorflow.keras as k
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
@@ -28,15 +22,16 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     Retuen:
         the keras model
     """
-    model = Sequential()
+    model = k.Sequential()
     for i in range(len(layers)):
         if i == 0:
             d = nx
         else:
             d = layers[i - 1]
 
-        model.add(Dense(layers[i], input_dim=d, activation=activations[i],
-                        kernel_regularizer=regularizers.l2(lambtha)))
+        model.add(k.layers.Dense(layers[i], input_dim=d,
+                  activation=activations[i],
+                  kernel_regularizer=k.regularizers.l2(lambtha)))
         if i != len(layers) - 1:
-            model.add(Dropout(1-keep_prob))
+            model.add(k.layers.Dropout(1-keep_prob))
     return model
