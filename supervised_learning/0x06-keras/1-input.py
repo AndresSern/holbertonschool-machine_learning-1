@@ -4,12 +4,7 @@ builds a neural network with the Keras library
 You are not allowed to use the Sequential class
 """
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras import Sequential
-from tensorflow._api.v1.keras.layers import Dense
-from tensorflow._api.v1.keras.layers import Dropout
-from tensorflow._api.v1.keras import regularizers
+import tensorflow.keras as k
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
@@ -28,16 +23,16 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     Retuen:
         the keras model
     """
-    x = tf.keras.Input(shape=(nx,))
+    x = k.Input(shape=(nx,))
     for i in range(len(layers)):
         if i == 0:
-            y = (Dense(layers[i], activation=activations[i],
-                       kernel_regularizer=regularizers.l2(lambtha)))(x)
+            y = (k.layers.Dense(layers[i], activation=activations[i],
+                 kernel_regularizer=k.regularizers.l2(lambtha)))(x)
         else:
-            y = (Dense(layers[i], activation=activations[i],
-                 kernel_regularizer=regularizers.l2(lambtha)))(y)
+            y = (k.layers.Dense(layers[i], activation=activations[i],
+                 kernel_regularizer=k.regularizers.l2(lambtha)))(y)
 
         if i != len(layers) - 1:
-            y = (Dropout(1 - keep_prob))(y)
-    model = tf.keras.Model(x, y)
+            y = (k.layers.Dropout(1 - keep_prob))(y)
+    model = k.Model(x, y)
     return model
