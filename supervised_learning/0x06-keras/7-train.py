@@ -5,9 +5,7 @@ and also analyze validaiton data
 and  also train the model using early stopping
 """
 
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow._api.v1.keras.utils import to_categorical
+import tensorflow.keras as k
 
 
 def train_model(network, data, labels, batch_size, epochs,
@@ -33,19 +31,27 @@ def train_model(network, data, labels, batch_size, epochs,
 
     Returns: the History object generated after training the model
     """
-    if validation_data and early_stopping:
+    if validation_data:
+        calbacks = []
         if learning_rate_decay:
-            lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-                initial_learning_rate=alpha,
-                decay_steps=epochs,
-                decay_rate=decay_rate)
-            optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)
-        callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=patience,verbose=verbose)
+
+            def decayed_learning_rate(step):
+                return alpha / (1 + decay_rate * step)
+            callback = k.callbacks.LearningRateScheduler(decayed_learning_rate,
+                                                         verbose=1)
+            calbacks.append(callback)
+        if early_stopping:
+            callback = k.callbacks.EarlyStopping(monitor='val_loss',
+                                                 patience=patience,
+                                                 verbose=verbose)
+            calbacks.append(callback)
         history = network.fit(x=data, y=labels, batch_size=batch_size,
-                            epochs=epochs, verbose=verbose,
-                            validation_data=validation_data, shuffle=shuffle, callbacks=[callback])
+                              epochs=epochs, verbose=verbose,
+                              validation_data=validation_data,
+                              shuffle=shuffle, callbacks=calbacks)
     else:
         history = network.fit(x=data, y=labels, batch_size=batch_size,
-                        epochs=epochs, verbose=verbose,
-                        validation_data=validation_data, shuffle=shuffle)
+                              pochs=epochs, verbose=verbose,
+                              validation_data=validation_data,
+                              shuffle=shuffle)
     return history
