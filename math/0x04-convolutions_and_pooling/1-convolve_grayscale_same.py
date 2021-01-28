@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""
-performs a same convolution on grayscale images
-from math import ceil, floor
-output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
-output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
-"""
 import numpy as np
 
 
