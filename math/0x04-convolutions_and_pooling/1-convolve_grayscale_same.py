@@ -2,6 +2,8 @@
 """
 performs a same convolution on grayscale images
 from math import ceil, floor
+output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
+output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
 """
 import numpy as np
 
@@ -34,10 +36,7 @@ def convolve_grayscale_same(images, kernel):
         p_w = (kw - 1) // 2
     else:
         p_w = kw // 2
-    '''
-    output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
-    output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
-    '''
+
     output_h = h
     output_w = w
     output = np.zeros((m, output_h, output_w))
