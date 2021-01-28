@@ -3,7 +3,6 @@
 performs a convolution on grayscale images
 """
 import numpy as np
-from math import ceil, floor
 
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
@@ -34,20 +33,20 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
 
     sh, sw = stride
     if padding == 'valid':
-        output_h = int(ceil(float((h - kh + 1)/sh)))
-        output_w = int(ceil(float((w - kw + 1)/sw)))
+        output_h = int(((h - kh + 1)/sh))
+        output_w = int(((w - kw + 1)/sw))
         image_padded = np.copy(images)
     else:
         if padding == 'same':
-            p_h = int(np.ceil(((h - 1) * sh + kh - h) / 2))
-            p_w = int(np.ceil(((w - 1) * sw + kw - w) / 2))
+            p_h = int(((h - 1) * sh + kh - h) / 2)
+            p_w = int(((w - 1) * sw + kw - w) / 2)
         else:
             p_h, p_w = padding
         """ output_h = h and output_w = w"""
-        output_h = int(ceil(float((h - kh + (2 * p_h) + 1)/sh)))
-        output_w = int(ceil(float((w - kw + (2 * p_w) + 1)/sw)))
+        output_h = np.int((h - kh + (2 * p_h) + 1)/sh)
+        output_w = np.int((w - kw + (2 * p_w) + 1)/sw)
 
-        image_padded = np.zeros((m, h + 2 * p_h, w + 2 * p_w))
+        image_padded = np.zeros((m, output_h, output_w))
         image_padded = np.pad(images, ((0, 0), (p_h, p_h),
                               (p_w, p_w)), 'constant')
 
