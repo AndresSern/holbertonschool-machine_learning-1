@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 performs a same convolution on grayscale images
+from math import ceil, floor
 """
 import numpy as np
-from math import ceil, floor
 
 
 def convolve_grayscale_same(images, kernel):
@@ -34,9 +34,12 @@ def convolve_grayscale_same(images, kernel):
         p_w = (kw - 1) // 2
     else:
         p_w = kw // 2
-
+    """
     output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
     output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
+    """
+    output_h = h
+    output_w = w
     output = np.zeros((m, output_h, output_w))
     image_padded = np.zeros((m, h + 2 * p_h, w + 2 * p_w))
     image_padded = np.pad(images, ((0, 0), (p_h, p_h), (p_w, p_w)), 'constant')
