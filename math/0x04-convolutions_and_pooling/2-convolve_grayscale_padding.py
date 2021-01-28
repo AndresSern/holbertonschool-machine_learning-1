@@ -3,7 +3,6 @@
 performs a same convolution on grayscale images
 """
 import numpy as np
-from math import ceil, floor
 
 
 def convolve_grayscale_padding(images, kernel, padding):
@@ -22,16 +21,18 @@ def convolve_grayscale_padding(images, kernel, padding):
         *kw is the width of the kernel
 
     Returns: a numpy.ndarray containing the convolved images
+    output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
+    output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
     """
 
     m, h, w = images.shape
     kh, kw = kernel.shape
     p_h, p_w = padding
 
-    output_h = int(ceil(float(h - kh + (2 * p_h) + 1)))
-    output_w = int(ceil(float(w - kw + (2 * p_w) + 1)))
+    output_h = h
+    output_w = w
     output = np.zeros((m, output_h, output_w))
-    image_padded = np.zeros((m, h + 2 * p_h, w + 2 * p_w))
+    image_padded = np.zeros((m, h + 2 * p_h - kh + 1, w + 2 * p_w - kh + 1))
     image_padded = np.pad(images, ((0, 0), (p_h, p_h), (p_w, p_w)), 'constant')
     for x in range(output_w):
         for y in range(output_h):
