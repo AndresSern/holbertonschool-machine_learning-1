@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+performs back propagation over a convolutional layer of a neural network
+"""
 import numpy as np
 
 
