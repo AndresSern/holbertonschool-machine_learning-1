@@ -16,7 +16,7 @@ def lenet5(X):
                             kernel_initializer=kernel)(X)
 
     """Pooling. Input = 28x28x6. Output = 14x14x6"""
-    pool_1 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv1)
+    pool_1 = K.layers.MaxPooling2D(strides=2)(conv1)
 
     """Layer 2: Convolutional. Output = 10x10x16."""
     conv2 = K.layers.Conv2D(filters=16, kernel_size=5,
@@ -24,7 +24,7 @@ def lenet5(X):
                             kernel_initializer=kernel)(pool_1)
 
     """Pooling. Input = 10x10x16. Output = 5x5x16."""
-    pool_2 = K.layers.MaxPooling2D(pool_size=2, strides=2,
+    pool_2 = K.layers.MaxPooling2D(strides=2,
                                    )(conv2)
 
     """ Flatten. Input = 5x5x16. Output = 400."""
