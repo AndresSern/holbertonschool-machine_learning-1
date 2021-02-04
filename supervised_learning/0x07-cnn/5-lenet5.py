@@ -8,7 +8,7 @@ import tensorflow.keras as K
 def lenet5(X):
 
     """ initialize their kernels with the he_normal initialization method"""
-    kernel = K.initializers.he_normal()
+    kernel = K.initializers.he_normal(seed=None)
 
     """Layer 1: Convolutional. Input = 28x28x1. Output = 28x28x6."""
     conv1 = K.layers.Conv2D(filters=6, kernel_size=5,
@@ -16,7 +16,7 @@ def lenet5(X):
                             kernel_initializer=kernel)(X)
 
     """Pooling. Input = 28x28x6. Output = 14x14x6"""
-    pool_1 = K.layers.MaxPooling2D(strides=2)(conv1)
+    pool_1 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv1)
 
     """Layer 2: Convolutional. Output = 10x10x16."""
     conv2 = K.layers.Conv2D(filters=16, kernel_size=5,
@@ -24,8 +24,7 @@ def lenet5(X):
                             kernel_initializer=kernel)(pool_1)
 
     """Pooling. Input = 10x10x16. Output = 5x5x16."""
-    pool_2 = K.layers.MaxPooling2D(strides=2,
-                                   )(conv2)
+    pool_2 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv2)
 
     """ Flatten. Input = 5x5x16. Output = 400."""
     flat_1 = K.layers.Flatten()(pool_2)
@@ -47,8 +46,7 @@ def lenet5(X):
     (with default hyperparameters) and accuracy metrics
     """
     model = K.models.Model(inputs=X, outputs=layer_3)
-    model.compile(loss='categorical_crossentropy',
-                  optimizer=K.optimizers.Adam(),
+    model.compile(optimizer='adam', loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
     return model
