@@ -4,6 +4,7 @@ import tensorflow as tf
 
 
 def lenet5(x, y):
+    """ the LeNet-5"""
     kernel = tf.contrib.layers.variance_scaling_initializer()
     """Layer 1: Convolutional. Input = 28x28x1. Output = 28x28x6."""
     conv1 = tf.layers.conv2d(x, kernel_size=(5, 5),
