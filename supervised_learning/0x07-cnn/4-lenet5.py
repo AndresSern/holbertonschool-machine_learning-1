@@ -39,9 +39,12 @@ def lenet5(x, y):
     logits = tf.layers.dense(inputs=fc2, units=10,
                              kernel_initializer=kernel)
 
-    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits,
-                                                            labels=y)
-    loss_operation = tf.reduce_mean(cross_entropy)
-    optimizer = tf.train.AdamOptimizer()
-    training_operation = optimizer.minimize(loss_operation)
-    return cross_entropy, optimizer, loss_operation, training_operation
+    softmax = tf.nn.softmax(logits)
+    loss = tf.losses.softmax_cross_entropy(y, logits)
+
+    optimizer = tf.train.AdamOptimizer().minimize(loss)
+    correct_prediction = tf.equal(tf.argmax(logits, axis=1),
+                                  tf.argmax(y, axis=1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float32"))
+
+    return softmax, optimizer, loss, accuracy
