@@ -25,7 +25,7 @@ def lenet5(X):
 
     """Pooling. Input = 10x10x16. Output = 5x5x16."""
     pool_2 = K.layers.MaxPooling2D(pool_size=2, strides=2,
-                                   input_shape=(10, 10, 16))(conv2)
+                                   )(conv2)
 
     """ Flatten. Input = 5x5x16. Output = 400."""
     flat_1 = K.layers.Flatten()(pool_2)
