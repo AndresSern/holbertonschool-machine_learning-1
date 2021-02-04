@@ -13,18 +13,15 @@ def lenet5(X):
     """Layer 1: Convolutional. Input = 28x28x1. Output = 28x28x6."""
     conv1 = K.layers.Conv2D(filters=6, kernel_size=5,
                             padding='same', activation='relu',
-                            kernel_initializer=kernel,
-                            input_shape=(28, 28, 1))(X)
+                            kernel_initializer=kernel)(X)
 
     """Pooling. Input = 28x28x6. Output = 14x14x6"""
-    pool_1 = K.layers.MaxPooling2D(pool_size=2, strides=2,
-                                   input_shape=(28, 28, 6))(conv1)
+    pool_1 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv1)
 
     """Layer 2: Convolutional. Output = 10x10x16."""
     conv2 = K.layers.Conv2D(filters=16, kernel_size=5,
                             padding='valid', activation='relu',
-                            kernel_initializer=kernel,
-                            input_shape=(14, 14, 6))(pool_1)
+                            kernel_initializer=kernel)(pool_1)
 
     """Pooling. Input = 10x10x16. Output = 5x5x16."""
     pool_2 = K.layers.MaxPooling2D(pool_size=2, strides=2,
@@ -50,7 +47,6 @@ def lenet5(X):
     (with default hyperparameters) and accuracy metrics
     """
     model = K.models.Model(inputs=X, outputs=layer_3)
-
     model.compile(optimizer='adam', loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
