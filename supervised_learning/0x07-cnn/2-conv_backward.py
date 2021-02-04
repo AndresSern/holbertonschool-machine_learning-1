@@ -42,9 +42,6 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
         ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)
         pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + 1)
 
-    else:
-        ph, pw = padding[0], padding[1]
-
     """Initialize dA_prev, dW, db with the correct shapes"""
 
     dA_prev = np.zeros((m, h_prev, w_prev, c_prev))
@@ -96,4 +93,4 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
             """ original da without padding"""
             dA_prev[i, :, :, :] = da_prev_pad[ph:h_prev + ph,
                                               pw: w_prev + pw, :]
-    return da_prev_pad, dW, db
+    return dA_prev, dW, db
