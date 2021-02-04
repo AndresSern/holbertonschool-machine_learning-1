@@ -8,7 +8,7 @@ import tensorflow.keras as K
 def lenet5(X):
 
     """ initialize their kernels with the he_normal initialization method"""
-    kernel = K.initializers.he_normal(seed=None)
+    kernel = K.initializers.he_normal()
 
     """Layer 1: Convolutional. Input = 28x28x1. Output = 28x28x6."""
     conv1 = K.layers.Conv2D(filters=6, kernel_size=5,
