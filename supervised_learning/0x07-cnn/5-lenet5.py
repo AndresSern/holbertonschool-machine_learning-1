@@ -47,7 +47,8 @@ def lenet5(X):
     (with default hyperparameters) and accuracy metrics
     """
     model = K.models.Model(inputs=X, outputs=layer_3)
-    model.compile(optimizer='adam', loss='categorical_crossentropy',
+    adam = K.optimizers.Adam()
+    model.compile(optimizer=adam, loss='categorical_crossentropy',
                   metrics=['accuracy'])
 
     return model
