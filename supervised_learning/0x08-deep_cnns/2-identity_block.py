@@ -32,6 +32,6 @@ def identity_block(A_prev, filters):
                         padding='same', kernel_initializer=kernel)(X)
     X = K.layers.BatchNormalization(axis=3)(X)
     """ A_prev is the shortcut"""
-    X = K.layers.Add()([A_prev, X])
+    X = K.layers.Add()([X, A_prev])
     X = K.layers.Activation('relu')(X)
     return X
