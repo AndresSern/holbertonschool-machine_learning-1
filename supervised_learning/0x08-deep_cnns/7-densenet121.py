@@ -19,7 +19,7 @@ def densenet121(growth_rate=32, compression=1.0):
     X_input = K.Input(shape=(224, 224, 3))
     kernel = K.initializers.he_normal()
 
-    X = K.layers.BatchNormalization(axis=3, name='bn_conv1')(X_input)
+    X = K.layers.BatchNormalization(axis=3)(X_input)
     X = K.layers.Activation('relu')(X)
     """
     nb_filter: initial number of filters. Default -1 indicates initial number
