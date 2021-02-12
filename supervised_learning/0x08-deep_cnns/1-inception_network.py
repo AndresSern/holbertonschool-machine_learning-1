@@ -38,7 +38,7 @@ def inception_network():
     x = inception_block(x, [128, 128, 192, 32, 96, 64])
 
     x = K.layers.MaxPool2D((3, 3), padding='same', strides=(2, 2),
-                           name='max_pool_3_3x3/2')(x)
+                           )(x)
 
     x = inception_block(x, [192, 96, 208, 16, 48, 64])
     x = inception_block(x, [160, 112, 224, 24, 64, 64])
