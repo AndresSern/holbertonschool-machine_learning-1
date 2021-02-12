@@ -19,7 +19,7 @@ def resnet50():
     '''K.layers.ZeroPadding2D((3, 3))(X_input)'''
     """ 7x7 ,64, stride = 2"""
     X = K.layers.Conv2D(64, (7, 7), strides=(2, 2),
-                        kernel_initializer=kernel)(X_input)
+                        kernel_initializer=kernel, padding='same')(X_input)
     X = K.layers.BatchNormalization()(X)
     X = K.layers.Activation('relu')(X)
     """ 3x3 maxpool stride = 2"""
