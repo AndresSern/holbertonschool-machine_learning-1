@@ -23,7 +23,7 @@ def resnet50():
     X = K.layers.BatchNormalization(axis=3)(X)
     X = K.layers.Activation('relu')(X)
     """ 3x3 maxpool stride = 2"""
-    X = K.layers.MaxPooling2D((3, 3), strides=(2, 2))(X)
+    X = K.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same')(X)
     """ conv2_x * 3"""
     X = projection_block(X, filters=[64, 64, 256], s=1)
     X = identity_block(X, [64, 64, 256])
@@ -46,7 +46,7 @@ def resnet50():
     X = identity_block(X,  [512, 512, 2048])
     X = identity_block(X,  [512, 512, 2048])
     """ AveragePooling2D '1000-d fc'"""
-    X = K.layers.AveragePooling2D(pool_size=(7, 7))(X)
+    X = K.layers.AveragePooling2D(pool_size=(7, 7), padding='same')(X)
 
     X = K.layers.Dense(1000, activation='softmax',
                        kernel_initializer=kernel)(X)
