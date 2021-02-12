@@ -54,7 +54,7 @@ def inception_network():
 
     x = K.layers.AveragePooling2D((7, 7), strides=1)(x)
     x = K.layers.Dropout(0.4)(x)
-    x = K.layers.Dense(1000, activation='softmax', name='output',
+    x = K.layers.Dense(1000, activation='softmax',
                        kernel_initializer=kernel_init)(x)
 
     model = K.models.Model(inputs=input_layer, outputs=x)
