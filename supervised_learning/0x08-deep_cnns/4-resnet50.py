@@ -30,19 +30,19 @@ def resnet50():
     X = identity_block(X, [64, 64, 256])
 
     """ conv2_x * 4"""
-    X = projection_block(X, filters=[128, 128, 512], s=2)
+    X = projection_block(X, filters=[128, 128, 512])
     X = identity_block(X, [128, 128, 512])
     X = identity_block(X, [128, 128, 512])
     X = identity_block(X, [128, 128, 512])
     """ conv2_x * 6"""
-    X = projection_block(X, filters=[256, 256, 1024], s=2)
+    X = projection_block(X, filters=[256, 256, 1024])
     X = identity_block(X, [256, 256, 1024])
     X = identity_block(X,  [256, 256, 1024])
     X = identity_block(X,  [256, 256, 1024])
     X = identity_block(X,  [256, 256, 1024])
     X = identity_block(X,  [256, 256, 1024])
     """ conv2_x * 3"""
-    X = projection_block(X, filters=[512, 512, 2048], s=2)
+    X = projection_block(X, filters=[512, 512, 2048])
     X = identity_block(X,  [512, 512, 2048])
     X = identity_block(X,  [512, 512, 2048])
     """ AveragePooling2D '1000-d fc'"""
