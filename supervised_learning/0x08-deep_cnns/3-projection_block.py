@@ -41,7 +41,6 @@ def projection_block(A_prev, filters, s=2):
                                )(A_prev)
     shortcut = K.layers.BatchNormalization(axis=3,)(shortcut)
 
-    X = K.layers.Add()([shortcut, X])
+    X = K.layers.Add()([X, shortcut])
     X = K.layers.Activation('relu')(X)
     return X
-    
