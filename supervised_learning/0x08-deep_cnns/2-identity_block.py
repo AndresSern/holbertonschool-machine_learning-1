@@ -19,7 +19,7 @@ def identity_block(A_prev, filters):
     F11, F2, F12 = filters
 
     X = K.layers.Conv2D(filters=F11, kernel_size=(1, 1), strides=(1, 1),
-                        padding='valid', kernel_initializer=kernel)(A_prev)
+                        padding='same', kernel_initializer=kernel)(A_prev)
     X = K.layers.BatchNormalization(axis=3)(X)
     X = K.layers.Activation('relu')(X)
 
@@ -29,7 +29,7 @@ def identity_block(A_prev, filters):
     X = K.layers.Activation('relu')(X)
 
     X = K.layers.Conv2D(filters=F12, kernel_size=(1, 1), strides=(1, 1),
-                        padding='valid', kernel_initializer=kernel)(X)
+                        padding='same', kernel_initializer=kernel)(X)
     X = K.layers.BatchNormalization(axis=3)(X)
     """ A_prev is the shortcut"""
     X = K.layers.Add()([A_prev, X])
