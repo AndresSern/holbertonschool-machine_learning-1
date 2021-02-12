@@ -20,7 +20,7 @@ def resnet50():
     """ 7x7 ,64, stride = 2"""
     X = K.layers.Conv2D(64, (7, 7), strides=(2, 2),
                         kernel_initializer=kernel)(X_input)
-    X = K.layers.BatchNormalization(axis=3, name='bn_conv1')(X)
+    X = K.layers.BatchNormalization(axis=3)(X)
     X = K.layers.Activation('relu')(X)
     """ 3x3 maxpool stride = 2"""
     X = K.layers.MaxPooling2D((3, 3), strides=(2, 2))(X)
@@ -48,9 +48,9 @@ def resnet50():
     """ AveragePooling2D '1000-d fc'"""
     X = K.layers.AveragePooling2D(pool_size=(7, 7))(X)
 
-    X = K.layers.Dense(1000, activation='softmax', name='output',
+    X = K.layers.Dense(1000, activation='softmax',
                        kernel_initializer=kernel)(X)
     """ model"""
-    model = K.models.Model(inputs=X_input, outputs=X, name='ResNet50')
+    model = K.models.Model(inputs=X_input, outputs=X)
 
     return model
