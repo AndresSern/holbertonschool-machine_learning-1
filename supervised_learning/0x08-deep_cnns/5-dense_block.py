@@ -20,7 +20,7 @@ def dense_block(X, nb_filters, growth_rate, layers):
     Dense Block and the number of filters within the concatenated
     outputs, respectively
     """
-    list_feat = [X]
+    shortcut = X
     kernel = K.initializers.he_normal()
     for i in range(layers):
         """the bottleneck layers used for DenseNet-B"""
@@ -29,7 +29,7 @@ def dense_block(X, nb_filters, growth_rate, layers):
         """
 
         """ bottleneck convolution block"""
-        X = K.layers.BatchNormalization(axis=3)(X)
+        X = K.layers.BatchNormalization(axis=3)(shortcut)
         X = K.layers.Activation('relu')(X)
         inter_channel = growth_rate * 4
         X = K.layers.Conv2D(filters=(inter_channel),
@@ -45,7 +45,6 @@ def dense_block(X, nb_filters, growth_rate, layers):
                             padding="same",
                             kernel_initializer=kernel)(X)
 
-        list_feat.append(X)
-        X = K.layers.Concatenate()(list_feat)
+        shortcut = K.layers.Concatenate()([shortcut, X])
         nb_filters += growth_rate
-    return X, nb_filters
+    return shortcut, nb_filters
