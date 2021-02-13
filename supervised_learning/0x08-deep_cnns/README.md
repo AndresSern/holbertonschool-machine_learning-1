@@ -8,15 +8,15 @@ Basically, skip connection is a standard module in many convolutional architectu
 
 ## 0. Inception Block
 
-  ![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/12/4a550a5b5501521f794b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210213T213454Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=6d3af89a55eff42e263d17e786d9597320fef5750a6b447845cc612cbe031e81)
+  ![alt text](https://miro.medium.com/max/1646/1*U_McJnp7Fnif-lw9iIC5Bw.png)
   
 ## 2. Identity Block
   
 
-![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/12/a884dfda60c795f11df7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210213T213454Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fdd29dbc78746252bbc4f20752928f6935946c58f20226feb043946235596813)
+![alt text](https://www.researchgate.net/profile/Antonio_Theophilo/publication/321347448/figure/fig2/AS:565869411815424@1511925189281/Bottleneck-Blocks-for-ResNet-50-left-identity-shortcut-right-projection-shortcut.png)
 
  ## 3. Projection Block
-![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/12/058c583d20b067c344c9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210213T213454Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3f0db4f9a5e30dabc8027a9202b9eb44522802206b1ea178c04eb58d48055a08)
+![alt text](https://www.researchgate.net/profile/Antonio_Theophilo/publication/321347448/figure/fig2/AS:565869411815424@1511925189281/Bottleneck-Blocks-for-ResNet-50-left-identity-shortcut-right-projection-shortcut.png)
 
 ## 4. ResNet-50 
 the first block is the projection block and the rest are identity blocks. So for ‘conv2_x’, the first block is a projection block and the other two repetitions are identity blocks.
@@ -89,4 +89,4 @@ of filters is 2 * growth_rate
         if nb_filter <= 0:
             nb_filter = 2 * growth_rate
 ```
-![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2019/1/b3479cb963d9af59fd58.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210213T213454Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f0f3bb0fc76cee0ceac758c6d323ba060c16f4c380de793f2d7479faab2892dd)
+![alt text](https://pytorch.org/assets/images/densenet2.png)
