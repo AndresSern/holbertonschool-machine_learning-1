@@ -46,26 +46,29 @@ if __name__ == '__main__':
     model.add(K.layers.Flatten())
     model.add(K.layers.BatchNormalization())
     model.add(K.layers.Dense(256, activation='relu',
-                             kernel_initializer=kernel_init,
-                             kernel_regularizer=K.regularizers.l2(0.001)))
-    model.add(K.layers.Dropout(0.5))
+                             kernel_initializer=kernel_init))
+    model.add(K.layers.Dropout(0.7))
     model.add(K.layers.BatchNormalization())
     model.add(K.layers.Dense(128, activation='relu',
-                             kernel_initializer=kernel_init,
-                             kernel_regularizer=K.regularizers.l2(0.001)))
+                             kernel_initializer=kernel_init))
     model.add(K.layers.Dropout(0.5))
     model.add(K.layers.BatchNormalization())
     model.add(K.layers.Dense(64, activation='relu',
-                             kernel_initializer=kernel_init,
-                             kernel_regularizer=K.regularizers.l2(0.001)))
-    model.add(K.layers.Dropout(0.5))
+                             kernel_initializer=kernel_init))
+    model.add(K.layers.Dropout(0.3))
     model.add(K.layers.Dense(10, activation='softmax',
-                             kernel_initializer=kernel_init,
-                             kernel_regularizer=K.regularizers.l2(0.001)))
+                             kernel_initializer=kernel_init))
     """callbacks"""
     CALLBACKS.append(K.callbacks.ModelCheckpoint(filepath='cifar10.h5',
-                                                 monitor='val_acc',
+                                                 monitor='val_accuracy',
                                                  save_best_only=True))
+    """
+    patience: Number of epochs with no improvement
+    after which training will be stopped.
+    """
+    CALLBACKS.append(K.callbacks.EarlyStopping(monitor='val_accuracy',
+                                               patience=2))
+
     model.compile(optimizer=optimizer,
                   loss='categorical_crossentropy',
                   metrics=['accuracy'])
@@ -73,8 +76,9 @@ if __name__ == '__main__':
     model.fit(x=x_train,
               y=y_train,
               batch_size=128,
-              epochs=20,
+              epochs=5,
               callbacks=CALLBACKS,
               validation_data=(x_test, y_test))
+
     model.summary()
     model.save('cifar10.h5')
