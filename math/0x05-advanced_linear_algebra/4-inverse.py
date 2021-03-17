@@ -95,14 +95,15 @@ def adjugate(matrix):
 
 def inverse(matrix):
     """ calculates the inverse of a matrix"""
-    if len(matrix) == 1 and len(matrix[0]) == 1:
-        return [[1/matrix[0][0]]]
+
+    if matrix == [[]]:
+        raise ValueError("matrix must be a non-empty square matrix")
     det = determinant(matrix)
     adj = adjugate(matrix)
+    if det == 0:
+        return None
     if det != 0:
         for r in range(len(adj)):
             for c in range(len(adj)):
                 adj[r][c] = adj[r][c] / det
-    elif det == 0:
-        return None
     return adj
