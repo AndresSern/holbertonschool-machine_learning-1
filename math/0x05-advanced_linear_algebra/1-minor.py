@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+calculates the minor matrix of a matrix
+"""
 
 
 def getMatrixMinor(m, i, j):
@@ -36,15 +39,18 @@ def minor(matrix):
     """
     calculates the minor matrix of a matrix
     """
+
     if len(matrix) == 0 or not isinstance(matrix, list):
         raise TypeError("matrix must be a list of lists")
     if (len(matrix[0]) == 0):
         return 1
     if len(matrix[0]) != len(matrix):
         raise ValueError("matrix must be a non-empty square matrix")
-    for item in matrix:
-        if not isinstance(item, list):
+    for i in range(1, len(matrix)):
+        if type(matrix[i]) is not list:
             raise TypeError("matrix must be a list of lists")
+        if len(matrix[i]) != len(matrix):
+            raise ValueError("matrix must be a non-empty square matrix")
     if (len(matrix[0]) == 1):
         return [[1]]
     h = []
