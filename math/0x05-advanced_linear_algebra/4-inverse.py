@@ -98,6 +98,9 @@ def inverse(matrix):
 
     if matrix == [[]]:
         raise ValueError("matrix must be a non-empty square matrix")
+    if len(matrix[0]) != len(matrix):
+        raise ValueError("matrix must be a non-empty square matrix")
+
     det = determinant(matrix)
     adj = adjugate(matrix)
     if det == 0:
