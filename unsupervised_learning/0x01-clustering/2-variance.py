@@ -20,8 +20,9 @@ def variance(X, C):
     if type(C) is not np.ndarray or len(C.shape) != 2:
         return None
     if (not isinstance(X, np.ndarray) or not isinstance(C, np.ndarray)
-            or len(X.shape) != 2 or len(C.shape) != 2):
-        return None, None
+            or len(X.shape) != 2 or len(C.shape) != 2
+            or X.shape[1] != C.shape[1]):
+        return None
     Dist = np.linalg.norm(X - C[:, np.newaxis], axis=2)
     variance = np.sum(np.square(np.min(Dist, axis=0)))
     return variance
