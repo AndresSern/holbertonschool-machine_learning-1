@@ -41,6 +41,8 @@ def kmeans(X, k, iterations=1000):
     if (not isinstance(X, np.ndarray) or not isinstance(k, int) or k <= 0
             or len(X.shape) != 2):
         return None, None
+    if type(iterations) is not int or iterations <= 0:
+        return None, None
     C = initialize(X, k)
     clss = []
     for i in range(iterations):
@@ -60,6 +62,6 @@ def kmeans(X, k, iterations=1000):
 
         if (prev_C == C).all():
             return C, clss
-    Dist = np.linalg.norm(X[:, None] - C, axis=2)
+    Dist = np.linalg.norm(X - C[:, np.newaxis], axis=2)
     clss = Dist.argmin(axis=0)
     return C, clss
