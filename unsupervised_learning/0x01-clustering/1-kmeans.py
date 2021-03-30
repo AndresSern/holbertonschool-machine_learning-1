@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import numpy as np
 """
 performs K-means on a dataset:
 """
+import numpy as np
 
 
 def initialize(X, k):
@@ -59,7 +59,6 @@ def kmeans(X, k, iterations=1000):
                 C[j] = np.mean(X[idx], axis=0)
 
         if (prev_C == C).all():
-            print(clss)
             return C, clss
     Dist = np.linalg.norm(X[:, None] - C, axis=2)
     clss = Dist.argmin(axis=0)
