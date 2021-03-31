@@ -40,8 +40,9 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     v1 = variance(X, c)
     for i in range(kmin, kmax+1):
         c, clas = kmeans(X, i, iterations)
-        res.append(c)
-        res.append(clas)
+        a = (c,clas)
+        res.append(a)
+        #res.append(clas)
         v = variance(X, c)
         d.append(abs(v - v1))
     return res, d
