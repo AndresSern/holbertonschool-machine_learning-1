@@ -44,5 +44,5 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         a = (c, clas)
         res.append(a)
         v = variance(X, c)
-        d.append(abs(v - v1))
+        d.append(abs(v1 - v))
     return res, d
