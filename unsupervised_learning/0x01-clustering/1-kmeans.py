@@ -43,24 +43,32 @@ def kmeans(X, k, iterations=1000):
         return None, None
     if type(iterations) is not int or iterations <= 0:
         return None, None
+ 
     C = initialize(X, k)
+    #print(X)
+    #print(C)
+    #print(C[: ,np.newaxis])
     clss = []
     for i in range(iterations):
         prev_C = np.copy(C)
         """ Compute the sum of the squared distance between data
         points and all centroids"""
         Dist = np.linalg.norm(X - C[:, np.newaxis], axis=2)
+        #print('at ',i,'distance',Dist.shape)
         """ index of the cluster in C that each data point belongs to"""
         clss = Dist.argmin(axis=0)
+        #print('at ',i,'c',clss.shape)
 
         for j in range(k):
             idx = np.argwhere(clss == j)
+            #print('at j ',j,'c',idx)
             if not len(idx):
                 C[j] = initialize(X, 1)
             else:
                 C[j] = np.mean(X[idx], axis=0)
 
         if (prev_C == C).all():
+            #print(clss)
             return C, clss
     Dist = np.linalg.norm(X - C[:, np.newaxis], axis=2)
     clss = Dist.argmin(axis=0)

@@ -27,8 +27,17 @@ def initialize(X, k):
     if (not isinstance(X, np.ndarray) or not isinstance(k, int) or k <= 0
             or len(X.shape) != 2):
         return None, None, None
+    """    
     n, d = X.shape
     pi = np.full((k), 1/k)
     c, clas = kmeans(X, k)
     S = np.full((k, d, d), np.identity(d))
+    return pi, c, S
+    """
+    n, d = X.shape
+    pi = np.tile(1/k, (k))
+    c, clss = kmeans(X, k)
+    S = np.tile(np.identity(d), (k))
+    S = S.reshape(k,d,d)
+
     return pi, c, S

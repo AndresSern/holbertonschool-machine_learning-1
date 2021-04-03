@@ -6,3 +6,6 @@ Kmeans algorithm is an iterative algorithm that tries to partition the dataset i
 ## 5. PDF
 calculates the probability density function of a Gaussian distribution
 ![alt text](https://i.ibb.co/dBKy38y/download.png)
+## 6. Expectation
+calculates the expectation step in the EM algorithm for a GMM
+![alt text](https://images.slideplayer.com/26/8746070/slides/slide_3.jpg)
