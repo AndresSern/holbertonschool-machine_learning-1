@@ -25,12 +25,14 @@ def regular(P):
         equal_arrays = comparison.all()
         if equal_arrays:
             return None
+
         P1 = np.matmul(P1, P)
     if np.any(P1 == 0):
         return None
+
     e_vals, e_vecs = np.linalg.eig(P.T)
     e_vec1 = e_vecs[:, np.isclose(e_vals, 1)]
     e_vec1 = e_vec1[:, 0]
     stationary = e_vec1 / e_vec1.sum()
     stationary = stationary.real
-    return stationary
+    return stationary[np.newaxis, :]
