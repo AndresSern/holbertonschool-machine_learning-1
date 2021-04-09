@@ -59,4 +59,4 @@ def viterbi(Observation, Emission, Transition, Initial):
         state = int(all_prev_states[state, i])
     state_sequence.reverse()
 
-    return P,  state_sequence
+    return state_sequence, P
