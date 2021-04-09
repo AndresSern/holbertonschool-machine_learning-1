@@ -53,7 +53,7 @@ def viterbi(Observation, Emission, Transition, Initial):
     state = int(np.argmax(F[:, T - 1]))
     state_sequence = []
     state_sequence.append(state)
-    print(all_prev_states)
+
     for i in range(T - 1, 0, -1):
         state_sequence.append(int(all_prev_states[state, i]))
         state = int(all_prev_states[state, i])
