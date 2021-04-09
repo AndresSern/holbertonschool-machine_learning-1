@@ -12,3 +12,7 @@ s * p = s
 ```
 ## 2. Absorbing Chains
 In the mathematical theory of probability, an absorbing Markov chain is a Markov chain in which every state can reach an absorbing state. An absorbing state is a state that, once entered, cannot be left.
+## 3. The Forward Algorithm
+![alt text](https://i.ibb.co/rp58J8X/forward.png)
+## 4. The Viretbi Algorithm
+![alt text](https://i.ibb.co/d2QTTr2/viterbi.png)
