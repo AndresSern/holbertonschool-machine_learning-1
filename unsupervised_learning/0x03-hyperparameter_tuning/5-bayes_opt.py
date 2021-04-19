@@ -93,5 +93,9 @@ class BayesianOptimization:
             Y_opt = self.f(X_opt)
             self.gp.update(X_opt, Y_opt)
             X_s.append(X_opt)
+        if self.minimize:
+            index = np.argmin(self.gp.Y)
+        else:
+            index = np.argmax(self.gp.Y)
 
-        return X_opt, Y_opt
+        return self.gp.X[index], self.gp.Y[index]
