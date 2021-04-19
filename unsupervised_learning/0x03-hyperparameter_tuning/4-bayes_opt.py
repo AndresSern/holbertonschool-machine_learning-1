@@ -65,7 +65,7 @@ class BayesianOptimization:
             Y_s_opt = np.max(self.gp.Y)
             imp = mu - Y_s_opt - self.xsi
 
-        with np.errstate(divide='warn'):
+        with np.errstate(divide='ignore'):
             imp = mu - self.xsi - np.min(self.gp.Y)
             Z = imp / sigma
             ei = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
