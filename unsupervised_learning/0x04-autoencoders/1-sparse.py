@@ -25,7 +25,8 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
         -auto is the full autoencoder model
     """
 
-    """ Encoder """
+    """ ______________Encoder_________________ """
+
     input_encoder = keras.Input(shape=(input_dims,))
 
     for i in range(len(hidden_layers)):
@@ -45,17 +46,18 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     # Encoder call
     encoder = keras.Model(inputs=input_encoder, outputs=latent)
 
-    """ Decoder """
+    """ ______________Decoder__________ """
+
     input_decoder = keras.Input(shape=(latent_dims, ))
 
     # hidden layers should be reversed for the decoder
 
     for j in range(len(hidden_layers)-1, -1, -1):
         if j == len(hidden_layers) - 1:
-            decode = keras.layers.Dense(hidden_layers[i],
+            decode = keras.layers.Dense(hidden_layers[j],
                                         activation='relu')(input_decoder)
         else:
-            decode = keras.layers.Dense(hidden_layers[i],
+            decode = keras.layers.Dense(hidden_layers[j],
                                         activation='relu')(decode)
 
     # Decoder output
@@ -65,11 +67,11 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     # Decoder call
     decoder = keras.Model(inputs=input_decoder, outputs=decode)
 
-    """ autoencoder """
+    """ ___________autoencoder_______________________ """
 
-    # Encoder_output = encoder(input_encoder) ==> latent
-    # Decoder_output = decoder(latent) ==> decode
-    Decoder_output = decoder(latent)
+    Encoder_output = encoder(input_encoder)
+
+    Decoder_output = decoder(Encoder_output)
 
     autoencoder = keras.Model(inputs=input_encoder, outputs=Decoder_output)
     autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
