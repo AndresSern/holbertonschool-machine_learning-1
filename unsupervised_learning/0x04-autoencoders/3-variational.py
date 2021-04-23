@@ -47,7 +47,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     z = keras.layers.Lambda(sampling)([z_mean, z_log_sigma])
     # Encoder call
     encoder = keras.Model(inputs=input_encoder,
-                          outputs=[z_mean, z_log_sigma, z])
+                          outputs=[z, z_mean, z_log_sigma])
 
     """ _________________________________Decoder____________ """
 
