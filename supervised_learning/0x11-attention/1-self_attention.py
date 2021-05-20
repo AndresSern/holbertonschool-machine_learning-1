@@ -40,10 +40,10 @@ class SelfAttention(tf.keras.layers.Layer):
         query = s_prev
         values = hidden_states
 
-        # newaxis_query = tf.expand_dims(query, 1)
-        # a = self.W(newaxis_query)
+        newaxis_query = tf.expand_dims(query, 1)
+        a = self.W(newaxis_query)
         # USE THE SAME UNITS NUMBER
-        a = self.W(values)
+        #a = self.W(values)
         b = self.U(values)
         # Calculate attention scores for Input
         score = self.V(tf.nn.tanh(a + b))
