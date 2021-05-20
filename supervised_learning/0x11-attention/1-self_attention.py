@@ -21,7 +21,7 @@ class SelfAttention(tf.keras.layers.Layer):
         super().__init__()
         self.W = tf.keras.layers.Dense(units)
         self.U = tf.keras.layers.Dense(units)
-        self.V = tf.keras.layers.Dense(1, activation='tanh')
+        self.V = tf.keras.layers.Dense(1)
 
     def call(self, s_prev, hidden_states):
         """
@@ -46,7 +46,7 @@ class SelfAttention(tf.keras.layers.Layer):
         a = self.W(values)
         b = self.U(values)
         # Calculate attention scores for Input
-        score = self.V(a + b)
+        score = self.V(tf.nn.tanh(a + b))
 
         # Calculate softmax
         score = tf.nn.softmax(score, axis=1)
