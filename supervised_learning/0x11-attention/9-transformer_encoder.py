@@ -19,9 +19,8 @@ class Encoder(tf.keras.layers.Layer):
             -drop_rate - the dropout rate
         """
         super().__init__()
-
-        self.dm = dm
         self.N = N
+        self.dm = dm
 
         self.embedding = tf.keras.layers.Embedding(input_vocab, self.dm)
         self.positional_encoding = positional_encoding(max_seq_len,
