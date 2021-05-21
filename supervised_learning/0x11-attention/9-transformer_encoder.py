@@ -40,12 +40,8 @@ class Encoder(tf.keras.layers.Layer):
         Returns: a tensor of shape (batch, input_seq_len, dm)
             containing the encoder output
         """
+       
         seq_len = x.shape[1]
-        ''' or
-        seq_len = tf.shape(x)[1]
-        with tf.Session() as sess:
-            seq_len = sess.run(seq_len)
-        '''
 
         # adding embedding and position encoding.
         # (batch_size, input_seq_len, d_model)
