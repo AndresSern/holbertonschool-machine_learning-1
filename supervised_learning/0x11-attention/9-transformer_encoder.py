@@ -18,7 +18,7 @@ class Encoder(tf.keras.layers.Layer):
             -max_seq_len - the maximum sequence length possible
             -drop_rate - the dropout rate
         """
-        super().__init__()
+        super(Encoder, self).__init__()
 
         self.dm = dm
         self.N = N
