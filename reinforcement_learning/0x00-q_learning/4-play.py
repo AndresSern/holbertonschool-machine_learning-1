@@ -33,4 +33,4 @@ def play(env, Q, max_steps=100):
             rewards.append(total_rewards)
             break
         state = new_state
-    return rewards
+    return total_rewards
