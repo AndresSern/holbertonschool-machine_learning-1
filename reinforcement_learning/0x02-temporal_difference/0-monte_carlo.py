@@ -1,11 +1,22 @@
 #!/usr/bin/env python3
-
+"""
+On-policy First Visit Monte Carlo Control with the incremental mean
+"""
 import numpy as np
 import gym
 
 
 def generate_episode(env, policy, max_steps):
-    """test"""
+    """
+    generate episode
+    Args:
+        -env is the openAI environment instance
+
+        -policy is a function that takes in a state and
+            returns the next action to take
+        -max_steps is the maximum number of steps per episode
+    Returns : list of tuple  state and reward
+    """
     state = env.reset()
     episode = []
     for i in range(max_steps):
@@ -25,10 +36,21 @@ def monte_carlo(env,
                 max_steps=100,
                 alpha=0.1,
                 gamma=0.99):
-    """test"""
+    """
+    Args:
+        -env is the openAI environment instance
+        -V is a numpy.ndarray of shape (s,)
+            containing the value estimate
+        -policy is a function that takes in a state and
+            returns the next action to take
+        -episodes is the total number of episodes to train over
+        -max_steps is the maximum number of steps per episode
+        -alpha is the learning rate
+        -gamma is the discount rate
 
-    nA = env.action_space.n
-    N = {new_list: [] for new_list in range(1, nA+1)}
+    Returns: V, the updated value estimate
+    """
+    returns = set()
     for i in range(1, episodes+1):
 
         # Generate episopde
@@ -38,11 +60,11 @@ def monte_carlo(env,
         states, rewards = zip(*episode)
         discounts = np.array([gamma ** i for i in range(len(rewards) + 1)])
 
-        for idx in range(len(episode[0])):
+        for idx in range(len(episode[0])-1, -1, -1):
 
             G = sum(rewards[idx:] * discounts[:-(idx+1)])
-
-            V[episode[idx][0]] = V[episode[idx][0]] + \
-                alpha * (G - V[episode[idx][0]])
-
+            if not episode[idx][0] in returns:
+                V[episode[idx][0]] = V[episode[idx][0]] + \
+                    alpha * (G - V[episode[idx][0]])
+            returns.add(episode[idx][0])
     return V
