@@ -21,6 +21,6 @@ if __name__ == "__main__":
     elif req .status_code == 200:
         print(data["location"])
     elif req .status_code == 403:
-        limit = r.headers["X-Ratelimit-Reset"]
+        limit = req.headers["X-Ratelimit-Reset"]
         x = (int(limit) - int(time.time())) / 60
         print("Reset in {} min".format(int(x)))
