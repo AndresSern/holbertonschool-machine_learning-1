@@ -10,17 +10,20 @@ def sentientPlanets():
     method that returns the list of names of
     the home planets of all sentient species
     """
-    planets = []
+    planets = set()
     url = 'https://swapi-api.hbtn.io/api/species'
 
-    data = requests.get(url).json()
-    while data['next']:
+    try:
+        while True:
+            data = requests.get(url).json()
+            for species in data['results']:
+                if species["designation"] == "sentient" or\
+                     species['classification'] == 'sentient':
+                    if species['homeworld']:
+                        planet = requests.get(species['homeworld']).json()
+                        planets.add(planet['name'])
 
-        for species in data['results']:
-            if species['designation'] == 'sentient'\
-                 and species['homeworld'] is not None:
-                planet = requests.get(species['homeworld']).json()
-                planets.append(planet['name'])
-        url = data['next']
-        data = requests.get(url).json()
-    return planets
+            url = data['next']
+            data = requests.get(url).json()
+    except Exception:
+        return planets
