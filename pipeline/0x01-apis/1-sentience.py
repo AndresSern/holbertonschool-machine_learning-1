@@ -11,16 +11,16 @@ def sentientPlanets():
     the home planets of all sentient species
     """
     planets = set()
-    url = 'https://swapi-api.hbtn.io/api/people/'
-    try:
-        data = requests.get(url).json()
-        while data['next']:
+    url = 'https://swapi-api.hbtn.io/api/species'
 
-            for person in data['results']:
-                planet = requests.get(person['homeworld']).json()
+    data = requests.get(url).json()
+    while data['next']:
+
+        for species in data['results']:
+            if species['designation'] == 'sentient'\
+                 and species['homeworld'] is not None:
+                planet = requests.get(species['homeworld']).json()
                 planets.add(planet['name'])
-            url = data['next']
-            data = requests.get(url).json()
-        return planets
-    except Exception:
-        return []
+        url = data['next']
+        data = requests.get(url).json()
+    return planets
