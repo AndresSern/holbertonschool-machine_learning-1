@@ -11,7 +11,7 @@ if __name__ == '__main__':
     req3 = requests.get(rock_url)
     rock_data = req3.json()
     for item in rock_data:
-        a.add(item['name'])
+        name_set.add(item['name'])
     dct_nbr_rocket = {i: 0 for i in name_set}
 
     #  ---------------
@@ -29,5 +29,6 @@ if __name__ == '__main__':
 
     result = {k: v for k, v in sorted(dct_nbr_rocket.items(),
                                       key=lambda item: item[1], reverse=True)}
+    result = {key:val for key, val in result.items() if val != 0}
     for key, value in result.items():
         print(key, ' : ', value)
