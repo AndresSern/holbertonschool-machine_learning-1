@@ -1,31 +1,33 @@
 #!/usr/bin/env python3
 
 
-"""  script that displays the upcoming launch """
+""" script that displays the number of launches per rocket."""
 
 import requests
 
-a = set()
-rock_url = "https://api.spacexdata.com/v4/rockets/"
-req3 = requests.get(rock_url)
-rock_data = req3.json()
-for item in rock_data:
-    a.add(item['name'])
-dictOfWords = {i: 0 for i in a}
+if __name__ == '__main__':
+    name_set = set()
+    rock_url = "https://api.spacexdata.com/v4/rockets/"
+    req3 = requests.get(rock_url)
+    rock_data = req3.json()
+    for item in rock_data:
+        a.add(item['name'])
+    dct_nbr_rocket = {i: 0 for i in name_set}
 
-#  ---------------
-url = "https://api.spacexdata.com/v4/launches/"
-req1 = requests.get(url)
-data = req1.json()
-for item in data:
-    rok = requests.get("https://api.spacexdata.com/v4/rockets/" + item['rocket']).json()
+    #  ---------------
+    url = "https://api.spacexdata.com/v4/launches/"
+    req1 = requests.get(url)
+    data = req1.json()
+    for item in data:
+        rok = requests.get("https://api.spacexdata.com/v4/rockets/" +
+                           item['rocket']).json()
 
-    try:
-        dictOfWords[rok['name']] += 1
-    except Exception:
-        pass
+        try:
+            dct_nbr_rocket[rok['name']] += 1
+        except Exception:
+            pass
 
-result = {k: v for k, v in sorted(dictOfWords.items(),
-                                  key=lambda item: item[1])}
-for key, value in result.items():
-    print(key, ' : ', value)
+    result = {k: v for k, v in sorted(dct_nbr_rocket.items(),
+                                      key=lambda item: item[1], reverse=True)}
+    for key, value in result.items():
+        print(key, ' : ', value)
