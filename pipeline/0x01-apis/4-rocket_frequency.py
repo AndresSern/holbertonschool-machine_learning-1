@@ -24,16 +24,15 @@ if __name__ == '__main__':
         rok = requests.get("https://api.spacexdata.com/v4/rockets/" +
                            item['rocket']).json()
 
-        try:
-            if rok['name'] in dct_nbr_rocket.keys():
-                dct_nbr_rocket[rok['name']] += 1
-            else:
-                dct_nbr_rocket[rok['name']] = 1
-        except Exception:
-            pass
+
+        if rok['name'] in dct_nbr_rocket.keys():
+            dct_nbr_rocket[rok['name']] += 1
+        else:
+            dct_nbr_rocket[rok['name']] = 1
+
 
     result = {k: v for k, v in sorted(dct_nbr_rocket.items(),
                                       key=lambda item: item[1], reverse=True)}
     result = {key: val for key, val in result.items() if val != 0}
     for key, value in result.items():
-        print(key, ' : ', value)
+        print(key, ': ', value)
