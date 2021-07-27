@@ -22,9 +22,9 @@ if __name__ == "__main__":
     data = req1.json()
     data.sort(key=lambda json: json['date_unix'])
     data = data[0]
-    print(data)
+
     v_name = data["name"]
-    print(v_name)
+
     v_localtime = data["date_local"]
 
     # <rocket name>
