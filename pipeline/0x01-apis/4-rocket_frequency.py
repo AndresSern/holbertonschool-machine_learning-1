@@ -40,7 +40,7 @@ if __name__ == '__main__':
             dct_nbr_rocket[b[item['rocket']]] += 1
         else:
             dct_nbr_rocket[b[item['rocket']]] = 1
-    result = {k: v for k, v in sorted(dct_nbr_rocket.items(),
-                                      key=lambda item: item[1], reverse=True)}
-    for key, value in result.items():
+
+    for key, value in sorted(dct_nbr_rocket.items(),
+                             key=lambda item: item[1], reverse=True):
         print("{}: {}".format(key, value))
